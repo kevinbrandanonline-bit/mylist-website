@@ -40,7 +40,7 @@ app = Flask(__name__)
 # Gemini Client
 
 client = genai.Client(
-    api_key=os.environ["GEMINI_API_KEY"]
+    api_key=os.environ["AQ.Ab8RN6I5rWvsKrqv0Rvxh4PiZraYY9CrHxR-sIyWd1iokKrpkQ"]
 )
 
 # ---------------- HTML ---------------- #
