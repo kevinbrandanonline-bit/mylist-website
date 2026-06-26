@@ -1,5 +1,4 @@
-import sys
-print(sys.executable)
+import os
 
 from flask import Flask, request, render_template_string
 import google.genai as genai
@@ -38,12 +37,11 @@ inventory = {
 
 app = Flask(__name__)
 
-import os
+# Gemini Client
 
 client = genai.Client(
     api_key=os.environ["GEMINI_API_KEY"]
 )
-
 
 # ---------------- HTML ---------------- #
 
@@ -57,19 +55,18 @@ HTML = """
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>MediStock AI</title>
 
 <style>
 
 *{
-
     margin:0;
     padding:0;
     box-sizing:border-box;
     font-family:Arial, Helvetica, sans-serif;
-
 }
 
 body{
@@ -79,9 +76,7 @@ body{
     color:white;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
     min-height:100vh;
@@ -141,6 +136,7 @@ textarea{
     margin-bottom:20px;
 
 }
+
 button{
 
     width:100%;
@@ -221,10 +217,8 @@ hr{
 
 <p class="subtitle">
 
-AI Powered Pharmacy Assistant
-
+AI Powered Pharmacy Assistant 🚀 Version 1123
 </p>
-
 <form action="/analyze" method="POST">
 
 <textarea
@@ -275,10 +269,12 @@ It is not a substitute for professional medical advice.
 </html>
 
 """
+
 # ---------------- HOME PAGE ---------------- #
 
 @app.route("/")
 def home():
+
     return render_template_string(
         HTML,
         symptoms="",
@@ -342,7 +338,6 @@ Rules:
 Immediately advise visiting the nearest hospital.
 
 Do NOT recommend medicines for emergency cases.
-
 6. Keep the response under 120 words.
 
 7. Finish with:
@@ -373,14 +368,11 @@ Please consult a qualified healthcare professional.
         symptoms=symptoms,
         result=result
     )
-
-
 # ---------------- RUN ---------------- #
-
-
-
-
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(
+        host="0.0.0.0",
+        port=port
+    )
