@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="hero-grid">
+  <section class="glass-card hero-card">
+    <p class="eyebrow">Daily Verse</p>
+    <h3>{{ daily_verse.reference }}</h3>
+    <p class="verse-text">{{ daily_verse.text }}</p>
+    <div class="chip-row">
+      <span class="chip">{{ daily_verse.topic }}</span>
+      <span class="chip">Read 10 min</span>
+    </div>
+  </section>
+
+  <section class="glass-card stat-card">
+    <p class="eyebrow">Reading streak</p>
+    <h2>12 days</h2>
+    <p>Continue reading to build your rhythm.</p>
+  </section>
+</div>
+
+<div class="dashboard-grid">
+  <section class="glass-card">
+    <div class="card-heading">
+      <h3>Continue reading</h3>
+      <a href="/reader">Open reader →</a>
+    </div>
+    <p>Psalm 23 · A gentle reminder of peace and guidance.</p>
+  </section>
+
+  <section class="glass-card">
+    <div class="card-heading">
+      <h3>Favorite verses</h3>
+      <span class="stat-pill">{{ favorite_count }}</span>
+    </div>
+    <p>Your saved verses and notes are gathered here for quick reflection.</p>
+  </section>
+
+  <section class="glass-card">
+    <div class="card-heading">
+      <h3>Prayer Journal</h3>
+      <a href="/journal">View prayers →</a>
+    </div>
+    <div id="prayer-summary" class="journal-list"></div>
+  </section>
+
+  <section class="glass-card">
+    <div class="card-heading">
+      <h3>Browse the Bible</h3>
+      <a href="/books">Open books →</a>
+    </div>
+    <p>Explore the full catalog of books from Genesis to Revelation and open each one for a quick overview.</p>
+  </section>
+</div>
+{% endblock %}

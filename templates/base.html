@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bibler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">⬢</div>
+        <div>
+          <h1>LinkBox</h1>
+          <p>Share your story</p>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a class="active" href="/linkbox"><span>◉</span> Dashboard</a>
+        <a href="/page/demo"><span>⬢</span> Preview</a>
+      </nav>
+      <div class="sidebar-card">
+        <h3>Share instantly</h3>
+        <p>Create a clean public page and send your audience a single link.</p>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Welcome</p>
+          <h2>{{ page_title }}</h2>
+        </div>
+        <button id="theme-toggle" class="ghost-btn" type="button">☀︎</button>
+      </header>
+
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

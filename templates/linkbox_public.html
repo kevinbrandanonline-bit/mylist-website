@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | LinkBox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    :root {
+      --theme-color: {{ page.theme_color or '#6d5dfc' }};
+      --accent-color: {{ page.accent_color or '#4f46e5' }};
+    }
+  </style>
+</head>
+<body class="public-body">
+  <main class="public-shell">
+    <section class="public-card">
+      {% if page.image_url %}
+        <img class="public-image" src="{{ page.image_url }}" alt="{{ page.title }}">
+      {% endif %}
+      <div class="public-content">
+        <p class="eyebrow">LinkBox</p>
+        <h1>{{ page.title }}</h1>
+        {% if page.description %}<p class="public-description">{{ page.description }}</p>{% endif %}
+        {% if page.notes %}<p class="public-notes">{{ page.notes }}</p>{% endif %}
+        <div class="link-list">
+          {% for link in page.links %}
+            <a class="link-pill" href="{{ link.url }}" target="_blank" rel="noreferrer">{{ link.title }}</a>
+          {% endfor %}
+        </div>
+        <div class="meta-row">
+          <span>Views: {{ page.views }}</span>
+          <button class="ghost-btn" type="button" onclick="navigator.clipboard.writeText(window.location.href)">Copy link</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

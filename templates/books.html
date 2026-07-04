@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="glass-card">
+  <div class="card-heading">
+    <h3>Books of the Bible</h3>
+    <span class="chip">Browse by testament</span>
+  </div>
+  {% for group in book_groups %}
+  <div class="book-group">
+    <h4>{{ group.label }}</h4>
+    <div class="book-grid">
+      {% for book in group.books %}
+      <a class="book-card" href="/book/{{ book.name }}">
+        <strong>{{ book.name }}</strong>
+        <span>{{ book.genre }}</span>
+        <p>{{ book.summary }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}

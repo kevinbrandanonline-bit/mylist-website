@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="glass-card reader-toolbar">
+  <div class="reader-controls">
+    <select id="book-select">
+      <option>Genesis</option>
+      <option>Psalm</option>
+      <option>Proverbs</option>
+      <option>John</option>
+    </select>
+    <select id="chapter-select">
+      <option>Chapter 1</option>
+      <option>Chapter 2</option>
+    </select>
+    <input type="text" id="verse-search" placeholder="Search verses or topics">
+  </div>
+</section>
+
+<section class="glass-card reader-panel">
+  <div class="card-heading">
+    <h3>Search results</h3>
+    <span class="chip">Loaded from Bible file</span>
+  </div>
+  <div id="reader-results" class="journal-list"></div>
+</section>
+{% endblock %}

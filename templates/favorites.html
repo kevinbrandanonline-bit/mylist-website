@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="glass-card">
+  <div class="card-heading">
+    <h3>Favorites</h3>
+    <span class="stat-pill">{{ favorite_count }} saved</span>
+  </div>
+  <div class="journal-list">
+    <article class="journal-item">
+      <h4>Psalm 23:1</h4>
+      <p>The Lord is my shepherd; I shall not want.</p>
+    </article>
+    <article class="journal-item">
+      <h4>Philippians 4:13</h4>
+      <p>I can do all things through Christ who strengthens me.</p>
+    </article>
+  </div>
+</section>
+{% endblock %}

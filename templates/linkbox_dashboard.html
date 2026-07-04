@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="linkbox-shell">
+  <section class="hero-card">
+    <div>
+      <p class="eyebrow">LinkBox MVP</p>
+      <h3>Create a beautiful share page in seconds.</h3>
+      <p>Use it to share links, notes, images, and your custom style with one public URL.</p>
+    </div>
+    <a class="ghost-btn" href="/page/demo">Preview sample</a>
+  </section>
+
+  <section class="grid-two">
+    <form class="panel" method="post" action="{{ action_url }}" enctype="multipart/form-data">
+      <div class="panel-head">
+        <h4>{% if editing %}Edit page{% else %}Create a page{% endif %}</h4>
+        <span class="pill">Simple MVP</span>
+      </div>
+      <label>Title
+        <input name="title" required value="{{ page.title if page else '' }}" placeholder="My launch page">
+      </label>
+      <label>Description
+        <textarea name="description" rows="3" placeholder="A short summary for your audience">{{ page.description if page else '' }}</textarea>
+      </label>
+      <label>Notes
+        <textarea name="notes" rows="3" placeholder="Optional notes for your visitors">{{ page.notes if page else '' }}</textarea>
+      </label>
+      <div class="link-blocks" id="link-blocks">
+        <label>Link 1 title
+          <input name="link_title" value="{{ (page.links[0].title if page and page.links|length > 0 else '') }}" placeholder="Docs">
+        </label>
+        <label>Link 1 URL
+          <input name="link_url" value="{{ (page.links[0].url if page and page.links|length > 0 else '') }}" placeholder="https://example.com">
+        </label>
+      </div>
+      <button class="primary-btn" type="button" onclick="addLinkField()">+ Add link</button>
+      <label>Image upload
+        <input type="file" name="image" accept="image/*">
+      </label>
+      <div class="color-row">
+        <label>Theme color
+          <input type="color" name="theme_color" value="{{ page.theme_color if page else '#6d5dfc' }}">
+        </label>
+        <label>Accent color
+          <input type="color" name="accent_color" value="{{ page.accent_color if page else '#4f46e5' }}">
+        </label>
+      </div>
+      <button class="primary-btn" type="submit">{% if editing %}Save changes{% else %}Create page{% endif %}</button>
+    </form>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h4>Your pages</h4>
+        <span class="pill">{{ pages|length }} total</span>
+      </div>
+      {% if pages %}
+        <div class="page-list">
+          {% for item in pages %}
+            <article class="page-card">
+              <div>
+                <h5>{{ item.title }}</h5>
+                <p>{{ item.description or 'No description yet' }}</p>
+              </div>
+              <div class="action-row">
+                <a class="ghost-btn" href="/page/{{ item.slug }}" target="_blank">Open</a>
+                <a class="ghost-btn" href="/linkbox/{{ item.slug }}/edit">Edit</a>
+                <button class="ghost-btn" type="button" onclick="copyShareLink('/page/{{ item.slug }}')">Share</button>
+                <form method="post" action="/linkbox/{{ item.slug }}/duplicate" style="display:inline">
+                  <button class="ghost-btn" type="submit">Duplicate</button>
+                </form>
+                <form method="post" action="/linkbox/{{ item.slug }}/delete" style="display:inline" onsubmit="return confirm('Delete this page?')">
+                  <button class="ghost-btn danger" type="submit">Delete</button>
+                </form>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty-state">No pages yet. Create your first LinkBox page to get started.</p>
+      {% endif %}
+    </div>
+  </section>
+</div>
+{% endblock %}

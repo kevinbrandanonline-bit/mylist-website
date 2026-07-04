@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="glass-card">
+  <div class="card-heading">
+    <h3>{{ book.name }}</h3>
+    <span class="chip">{{ book.testament }}</span>
+  </div>
+  <p class="verse-text">{{ book.summary }}</p>
+  <div class="chip-row">
+    {% for highlight in book.highlights %}
+    <span class="chip">{{ highlight }}</span>
+    {% endfor %}
+  </div>
+  <div class="book-meta">
+    <p><strong>Genre:</strong> {{ book.genre }}</p>
+    <p><strong>Theme:</strong> {{ book.summary }}</p>
+  </div>
+</section>
+{% endblock %}

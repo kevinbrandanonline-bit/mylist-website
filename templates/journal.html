@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="glass-card">
+  <div class="card-heading">
+    <h3>Prayer Journal</h3>
+    <button id="add-prayer-btn" class="primary-btn" type="button">+ New Prayer</button>
+  </div>
+  <form id="prayer-form" class="prayer-form">
+    <input id="prayer-title" name="title" type="text" placeholder="Prayer title" required>
+    <textarea id="prayer-body" name="body" rows="4" placeholder="Write your request or reflection" required></textarea>
+    <button class="primary-btn" type="submit">Save prayer</button>
+  </form>
+  <div id="prayer-list" class="journal-list"></div>
+</section>
+{% endblock %}

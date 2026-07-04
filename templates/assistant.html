@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="glass-card">
+  <div class="card-heading">
+    <h3>AI Assistant</h3>
+    <span class="chip">Study help</span>
+  </div>
+  <form class="assistant-form" action="/assistant" method="get">
+    <input type="text" name="question" placeholder="Ask about a passage or theme" value="{{ assistant_question or '' }}">
+    <button class="primary-btn" type="submit">Ask</button>
+  </form>
+  {% if assistant_answer %}
+  <div class="assistant-answer">
+    <h4>Response</h4>
+    <p>{{ assistant_answer }}</p>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}
